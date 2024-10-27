@@ -22,7 +22,7 @@ const Onboarding = () => {
 		<>
 			{currentSection === 0 && (
 				<div className="flex flex-col items-center text-white justify-center h-screen">
-					<h1 className="text-3xl font-bold">Onboarding</h1>
+					<h1 className="text-3xl font-bold">Choose Gender</h1>
 					<div className="w-64 flex flex-col gap-4 py-8">
 						<Button name="Male" onClick={handleNextSection} />
 						<Button name="Female" onClick={handleNextSection} />
