@@ -1,10 +1,3 @@
-import {
-	FaQrcode,
-	FaEllipsisV,
-	FaCheck,
-	FaFacebookMessenger,
-	FaUserSecret,
-} from "react-icons/fa";
 import { FaCog } from "react-icons/fa";
 
 import { FaArrowRight } from "react-icons/fa";
@@ -15,7 +8,7 @@ import muscle from "../assets/muscle.png";
 import fire from "../assets/fire.png";
 import messenger from "../assets/messenger.png";
 import PropTypes from "prop-types";
-
+import Navbar from "../components/Navbar";
 const CoachButton = ({ name, onClick, background, icon }) => {
 	return (
 		<button
@@ -92,24 +85,7 @@ const Daily = () => {
 			</div>
 
 			<div className="absolute bottom-0 left-0 w-full flex justify-evenly mb-4 ">
-				<div className="flex gap-5">
-					<div className="flex flex-col items-center justify-between size-14 p-1">
-						<FaQrcode className="text-base" />
-						<span className="text-sm">Scan</span>
-					</div>
-					<div className="flex flex-col items-center justify-between size-14 p-1 ">
-						<FaEllipsisV className="text-base" />
-						<span className="text-sm">Extras</span>
-					</div>
-					<div className="flex flex-col items-center justify-between size-14 p-1 ">
-						<FaCheck className="text-base" />
-						<span className="text-sm">Daily</span>
-					</div>
-					<div className="flex flex-col items-center justify-between size-14 p-1 ">
-						<FaFacebookMessenger className="text-base" />
-						<span className="text-sm">Coach</span>
-					</div>
-				</div>
+				<Navbar />
 			</div>
 		</div>
 	);

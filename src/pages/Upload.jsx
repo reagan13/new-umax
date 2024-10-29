@@ -10,7 +10,7 @@ const Upload = () => {
 	return (
 		<div className="flex flex-col items-center text-white justify-between h-screen py-8  w-full ">
 			<div className="flex items-center w-full">
-				<button>
+				<button onClick={() => navigate("/home")}>
 					<FaArrowLeft className="ml-2 text-white text-xl" />
 				</button>
 				<h1 className="text-2xl font-bold text-center  w-full mr-2">

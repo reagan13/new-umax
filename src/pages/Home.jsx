@@ -1,9 +1,3 @@
-import {
-	FaQrcode,
-	FaEllipsisV,
-	FaCheck,
-	FaFacebookMessenger,
-} from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
 
 import face from "../assets/face.png";
@@ -16,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { ImageContext } from "../Provider/ImageProvider";
-
+import Navbar from "../components/Navbar";
 const Home = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -183,23 +177,9 @@ const Home = () => {
 				<div className="h-2 w-2 bg-white rounded-full"></div>
 			</div> */}
 			{/* Floating buttons */}
-			<div className="flex gap-5 mt-4">
-				<div className="flex flex-col items-center justify-center size-14 p-1 bg-gray-600 rounded-full">
-					<FaQrcode className="text-base " />
-					<span className="text-sm">Scan</span>
-				</div>
-				<div className="flex flex-col items-center justify-center size-14 p-1 bg-gray-600 rounded-full">
-					<FaEllipsisV className="text-base " />
-					<span className="text-sm">Extras</span>
-				</div>
-				<div className="flex flex-col items-center justify-center size-14  p-1 bg-gray-600 rounded-full">
-					<FaCheck className="text-base " />
-					<span className="text-sm">Daily</span>
-				</div>
-				<div className="flex flex-col items-center justify-center size-14 p-1 bg-gray-600 rounded-full">
-					<FaFacebookMessenger className="text-base" />
-					<span className="text-sm">Coach</span>
-				</div>
+
+			<div className="absolute bottom-0 left-0 w-full flex justify-evenly mb-4 ">
+				<Navbar />
 			</div>
 		</div>
 	);
