@@ -146,18 +146,18 @@ const Onboarding = () => {
 					</div>
 				)}
 				{activeIndex === 4 && (
-					<div className="w-80 flex flex-col gap-5 py-8">
+					<div className="w-80 flex flex-col gap-5 py-8 ">
 						<GoogleOAuthProvider clientId={clientID}>
 							<GoogleLogin
 								onSuccess={onSuccess}
 								onFailure={onFailure}
 								cookiePolicy="single_host_origin"
 								isSignedIn={true}
-								render={(renderProps) => (
+								render={({ onClick, disabled }) => (
 									<button
-										className="flex items-center justify-center rounded-full bg-white text-black w-full py-4"
-										onClick={renderProps.onClick}
-										disabled={renderProps.disabled}
+										className="flex items-center justify-center rounded-full bg-white text-black border border-gray-300 shadow-md hover:bg-gray-100 w-full py-4 transition duration-200 ease-in-out"
+										onClick={onClick}
+										disabled={disabled}
 									>
 										<FaGoogle className="mr-2" />
 										Sign In With Google
@@ -165,7 +165,6 @@ const Onboarding = () => {
 								)}
 							/>
 						</GoogleOAuthProvider>
-
 						<button
 							className="flex items-center justify-center rounded-full bg-black border py-4 text-white w-full "
 							onClick={handleNextSection}

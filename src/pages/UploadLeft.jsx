@@ -1,28 +1,40 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
-
+import { ImageContext } from "../Provider/ImageProvider";
 const UploadLeft = () => {
 	const navigate = useNavigate();
 	const webcamRef = useRef(null);
-	const [imageSrc, setImageSrc] = useState(null);
+	const { imageSrc1, setImageSrc1 } = useContext(ImageContext);
 	const [cameraAccessible, setCameraAccessible] = useState(true);
 	const [cameraError, setCameraError] = useState("");
-
+	console.log("this is image before", imageSrc1);
 	const handleNextSection = () => {
+		if (webcamRef.current) {
+			webcamRef.current.video.srcObject
+				.getTracks()
+				.forEach((track) => track.stop());
+		}
 		navigate("/upload/right");
-		window.location.reload();
 	};
-
 	const capture = useCallback(() => {
-		const imageSrc = webcamRef.current.getScreenshot();
-		setImageSrc(imageSrc);
-	}, [webcamRef]);
+		const capturedImage = webcamRef.current.getScreenshot();
+		console.log("Captured image:", capturedImage); // Logs immediately after capture
+		setImageSrc1(capturedImage); // Asynchronously updates imageSrc
+		console.log("this is image after", imageSrc1);
+	}, [webcamRef, setImageSrc1]);
 
+	useEffect(() => {
+		if (imageSrc1) {
+			console.log("imageSrc in Home:", imageSrc1); // Should log only after imageSrc is set
+		} else {
+			console.log("imageSrc is still null in Home");
+		}
+	}, [imageSrc1]);
 	const handleTryAgain = () => {
-		setImageSrc(null);
+		setImageSrc1(null);
 	};
 
 	useEffect(() => {
@@ -49,14 +61,14 @@ const UploadLeft = () => {
 					<FaArrowLeft className="ml-2 text-white text-xl" />
 				</button>
 				<h1 className="text-2xl font-bold text-center w-full mr-2">
-					Upload a front selfie
+					Upload a left side selfie
 				</h1>
 			</div>
 			<div className="p-4 h-96 w-full rounded-3xl flex items-center justify-center ">
 				{cameraAccessible ? (
-					imageSrc ? (
+					imageSrc1 ? (
 						<img
-							src={imageSrc}
+							src={imageSrc1}
 							alt="Captured"
 							className="h-full w-full object-cover rounded-3xl"
 						/>
@@ -73,7 +85,7 @@ const UploadLeft = () => {
 				)}
 			</div>
 			<div className="w-full px-4 flex flex-col gap-4">
-				{imageSrc ? (
+				{imageSrc1 ? (
 					<>
 						<Button name="Try Again" onClick={handleTryAgain} />
 						<button

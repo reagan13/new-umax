@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-const clientID =
-	"774046045515-7ddl57ul7aar0lc4karbto27i0u3e5os.apps.googleusercontent.com";
+
 import Onboarding from "./pages/Onboarding";
 import Home from "./pages/Home";
 import Daily from "./pages/Daily";
@@ -11,11 +10,9 @@ import UploadLeft from "./pages/UploadLeft";
 import UploadRight from "./pages/UploadRight";
 import RevealResulstDemo from "./pages/RevealResulstDemo";
 import GetUmaxPro from "./pages/GetUmaxPro";
-
+import Analyzing from "./pages/Analyzing";
+import Analysis from "./pages/Analysis";
 function App() {
-	const onSuccess = () => {
-		console.log("[Logout Success] Logged out successfully");
-	};
 	return (
 		<div className="flex items-center justify-center min-h-screen bg-black">
 			<div className="w-96 mx-auto border">
@@ -39,6 +36,9 @@ function App() {
 						<Route path="/upload/right" element={<UploadRight />} />
 						<Route path="/revealdemo" element={<RevealResulstDemo />} />
 						<Route path="/getumaxpro" element={<GetUmaxPro />} />
+
+						<Route path="/analyzing" element={<Analyzing />} />
+						<Route path="/analysis" element={<Analysis />} />
 					</Routes>
 				</Router>
 			</div>

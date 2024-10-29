@@ -1,28 +1,37 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, useContext } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import Webcam from "react-webcam";
-
+import { ImageContext } from "../Provider/ImageProvider";
 const UploadRight = () => {
 	const navigate = useNavigate();
 	const webcamRef = useRef(null);
-	const [imageSrc, setImageSrc] = useState(null);
+	const { imageSrc2, setImageSrc2 } = useContext(ImageContext);
 	const [cameraAccessible, setCameraAccessible] = useState(true);
 	const [cameraError, setCameraError] = useState("");
 
 	const handleNextSection = () => {
-		navigate("/revealdemo");
-		window.location.reload();
+		if (webcamRef.current) {
+			const mediaStream = webcamRef.current.video.srcObject;
+			if (mediaStream) {
+				mediaStream.getTracks().forEach((track) => track.stop()); // Stop all tracks
+			}
+		}
+		navigate("/analyzing");
 	};
 
 	const capture = useCallback(() => {
-		const imageSrc = webcamRef.current.getScreenshot();
-		setImageSrc(imageSrc);
-	}, [webcamRef]);
+		const capturedImage = webcamRef.current.getScreenshot();
+		console.log("Captured image:", capturedImage); // Logs immediately after capture
+		setImageSrc2(capturedImage); // Asynchronously updates imageSrc
+		console.log("this is image after", imageSrc2);
+	}, [webcamRef, setImageSrc2]);
+
+	useEffect(() => {}, [imageSrc2]);
 
 	const handleTryAgain = () => {
-		setImageSrc(null);
+		setImageSrc2(null);
 	};
 
 	useEffect(() => {
@@ -49,14 +58,14 @@ const UploadRight = () => {
 					<FaArrowLeft className="ml-2 text-white text-xl" />
 				</button>
 				<h1 className="text-2xl font-bold text-center w-full mr-2">
-					Upload a front selfie
+					Upload a right side selfie
 				</h1>
 			</div>
 			<div className="p-4 h-96 w-full rounded-3xl flex items-center justify-center ">
 				{cameraAccessible ? (
-					imageSrc ? (
+					imageSrc2 ? (
 						<img
-							src={imageSrc}
+							src={imageSrc2}
 							alt="Captured"
 							className="h-full w-full object-cover rounded-3xl"
 						/>
@@ -73,7 +82,7 @@ const UploadRight = () => {
 				)}
 			</div>
 			<div className="w-full px-4 flex flex-col gap-4">
-				{imageSrc ? (
+				{imageSrc2 ? (
 					<>
 						<Button name="Try Again" onClick={handleTryAgain} />
 						<button

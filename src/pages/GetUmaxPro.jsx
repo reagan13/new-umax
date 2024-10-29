@@ -134,7 +134,7 @@ const GetUmaxPro = () => {
 			<p className="text-slate-400 pt-4 pb-10">1,000,000 scans completed</p>
 			<div className="w-full text-center ">
 				<div className=" mx-4">
-					<Button name="Unlock Now" />
+					<Button name="Unlock Now" onClick={() => navigate("/home")} />
 				</div>
 
 				<p className="text-slate-400 py-3">3.99 £ per week </p>
