@@ -14,8 +14,8 @@ import Analyzing from "./pages/Analyzing";
 import Analysis from "./pages/Analysis";
 function App() {
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-black">
-			<div className="w-96 mx-auto border">
+		<div className="flex items-center justify-center border min-h-screen bg-black">
+			<div className="w-96 mx-auto border min-h-screen flex flex-col">
 				{/* Your app content here */}
 				{/* <div id="signOutButton">
                     <GoogleLogout
