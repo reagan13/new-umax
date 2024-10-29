@@ -11,6 +11,7 @@ import UploadFront from "./pages/UploadFront";
 import UploadLeft from "./pages/UploadLeft";
 import UploadRight from "./pages/UploadRight";
 import RevealResulstDemo from "./pages/RevealResulstDemo";
+import GetUmaxPro from "./pages/GetUmaxPro";
 
 function App() {
 	const onSuccess = () => {
@@ -38,6 +39,7 @@ function App() {
 						<Route path="/upload/left" element={<UploadLeft />} />
 						<Route path="/upload/right" element={<UploadRight />} />
 						<Route path="/revealdemo" element={<RevealResulstDemo />} />
+						<Route path="/getumaxpro" element={<GetUmaxPro />} />
 					</Routes>
 				</Router>
 			</div>
