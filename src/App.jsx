@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { GoogleLogout } from "react-google-login";
 const clientID =
 	"774046045515-7ddl57ul7aar0lc4karbto27i0u3e5os.apps.googleusercontent.com";
 import Onboarding from "./pages/Onboarding";

@@ -4,18 +4,12 @@ import { FaStar } from "react-icons/fa";
 import umax from "../assets/umax-logo.png";
 import InputBox from "../components/InputBox";
 import bell from "../assets/bell.png";
-import { FaBell, FaGoogle, FaApple, FaCog } from "react-icons/fa";
-import face from "../assets/face.png";
-import {
-	FaQrcode,
-	FaEllipsisV,
-	FaCheck,
-	FaFacebookMessenger,
-} from "react-icons/fa";
+import { FaGoogle, FaApple } from "react-icons/fa";
+
 import { useSwipeable } from "react-swipeable";
-import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
 import { useNavigate } from "react-router-dom";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 
 const Onboarding = () => {
 	const navigate = useNavigate();
@@ -52,7 +46,7 @@ const Onboarding = () => {
 			return newIndex;
 		});
 	};
-	const onSuccess = (credentialResponse) => {
+	const onSuccess = () => {
 		// Navigate to the /home route after successful login
 		navigate("/home");
 	};
@@ -153,23 +147,25 @@ const Onboarding = () => {
 				)}
 				{activeIndex === 4 && (
 					<div className="w-80 flex flex-col gap-5 py-8">
-						<GoogleLogin
-							clientId={clientID}
-							onSuccess={onSuccess}
-							onFailure={onFailure}
-							cookiePolicy="single_host_origin"
-							isSignedIn={true}
-							render={(renderProps) => (
-								<button
-									className="flex items-center justify-center rounded-full bg-white text-black w-full py-4"
-									onClick={renderProps.onClick}
-									disabled={renderProps.disabled}
-								>
-									<FaGoogle className="mr-2" />
-									Sign In With Google
-								</button>
-							)}
-						/>
+						<GoogleOAuthProvider clientId={clientID}>
+							<GoogleLogin
+								onSuccess={onSuccess}
+								onFailure={onFailure}
+								cookiePolicy="single_host_origin"
+								isSignedIn={true}
+								render={(renderProps) => (
+									<button
+										className="flex items-center justify-center rounded-full bg-white text-black w-full py-4"
+										onClick={renderProps.onClick}
+										disabled={renderProps.disabled}
+									>
+										<FaGoogle className="mr-2" />
+										Sign In With Google
+									</button>
+								)}
+							/>
+						</GoogleOAuthProvider>
+
 						<button
 							className="flex items-center justify-center rounded-full bg-black border py-4 text-white w-full "
 							onClick={handleNextSection}
