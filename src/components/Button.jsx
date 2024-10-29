@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const Button = ({ name, onClick }) => {
 	return (
 		<button
-			className="rounded-full bg-violet-600 w-full py-2"
+			className="rounded-full bg-violet-800 w-full py-4 text-lg"
 			onClick={onClick}
 		>
 			{name}
