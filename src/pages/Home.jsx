@@ -10,9 +10,11 @@ import Button from "../components/Button";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import discord from "../assets/discord.jpg";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+	const navigate = useNavigate();
 	const handleNextSection = () => {
-		console.log("Next Section");
+		navigate("/upload");
 	};
 	const responsive = {
 		desktop: {
